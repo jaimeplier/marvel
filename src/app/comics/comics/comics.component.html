@@ -1,0 +1,55 @@
+
+<form action="" [formGroup]="filters" class="form__group">
+        <div class="form-grid">
+            <label for="format" class="form__label">Format:
+            <select class="form__input" name="format" type="text" formControlName="format">
+                <option value="comic">Comic</option>
+                <option value="magazine">Magazine</option>
+                <option value="hardcover">Hardcover</option>
+            </select>
+            </label>
+            <label for="title" class="form__label">Title:
+                <input class="form__input" name="title" type="text" formControlName="title">
+            </label>
+            <label for="issueNumber" class="form__label">Issue number:
+                <input class="form__input" name="issueNumber" type="text" formControlName="issueNumber">
+            </label>
+            <label for="orderBy" class="form__label">Order by Issue #:
+                <input class="form__radio-button" name="orderBy" type="checkbox" formControlName="orderBy">
+            </label>
+            <button class="form__label" (click)="submit()">Filter</button>
+        </div>
+    </form>
+    
+<div class="wrapper" >
+        <div class="card" *ngFor="let obj of results">
+            <div class="card__side ">
+    
+                <a [routerLink]="'/home/comics/' + obj.id" >
+                    <div class="card__picture" 
+                    [ngStyle]="{'background-image': 'url(' + obj.thumbnail.path + '/landscape_medium.' + obj.thumbnail.extension +')'}">
+                    </div>
+                </a>
+
+                <img (click)="user.save('comics', obj)" src="/assets/star-empty.png" alt="" class="card__favorite">
+                <h4 class="card__heading-comics">
+                    <span class="card__heading-span card__heading-span--3">
+                        {{ obj.title }}
+                    </span>
+                </h4>
+    
+                <br>
+                <p style="padding: 3rem;">{{ obj.description }}</p>
+                
+                <div class="card__details">
+                    <ng-container *ngIf="obj.stories.items.length != 0">
+                        <br>
+                        <h4 class="u-center-text">Stories</h4>
+                        <a *ngFor="let story of obj.stories.items | slice:0:5" [href]="'home/stories/' + api.getId(story.resourceURI)">
+                            <p>{{ story.name }}</p>
+                        </a>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>

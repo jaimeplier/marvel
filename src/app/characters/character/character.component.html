@@ -1,0 +1,29 @@
+<div class="section-single">
+    <h3>{{ character.name }}</h3>
+    <br>
+    <div >
+        <img [src]="character.thumbnail.path + '/landscape_large.' + character.thumbnail.extension" alt="" class="section-image" >
+    </div>
+    <div class="section-description">
+        <p>{{ character.description }}</p>
+    </div>
+    
+    <ng-container *ngIf="character.comics.items.length != 0">
+        <br>
+        <h4 class="u-center-text">Comics</h4>
+        <a *ngFor="let comic of character.comics.items " [href]="'home/comics/' + api.getId(comic.resourceURI)">
+            <p>{{ comic.name }}</p>
+        </a>
+    </ng-container>
+    <ng-container *ngIf="character.stories.items.length != 0">
+        <br>
+        <h4 class="u-center-text">Stories</h4>
+        <a *ngFor="let story of character.stories.items " [href]="'home/stories/' + api.getId(story.resourceURI)">
+            <p>{{ story.name }}</p>
+        </a>
+    </ng-container>
+
+    
+    <br>
+    <p>{{ attText.attributionText }}</p>
+</div>

@@ -1,0 +1,36 @@
+
+.btn-header {
+    color: aliceblue;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all .2s;
+    position: relative;
+    font-size: $default-font-size;
+    box-shadow: 0 1rem 2rem rgba($color-black,.3);
+    border: none;
+    cursor: pointer;
+
+    background-color: rgba(192, 59, 54, 0.658);
+    background-repeat:no-repeat;
+    border: none;
+    overflow: hidden;
+    outline:none;
+
+    animation-name: moveIn;
+    animation-duration: 3.5s;
+    animation-timing-function: ease-out;
+
+    &:hover {
+        transform: translateY(-3px);
+        // box-shadow: 0 1rem 2rem rgba($color-black,.2);
+
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+    
+}

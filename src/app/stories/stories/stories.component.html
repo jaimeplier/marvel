@@ -1,0 +1,24 @@
+
+<div class="wrapper" >
+    <div class="col-1-of-3 navigation__border" *ngFor="let obj of results">
+        <!-- <a [routerLink]="'/home/characters/' + obj.id">
+            <img [src]="obj.thumbnail.path + '/landscape_medium.' + obj.thumbnail.extension" alt="" class="navigation__image">
+        </a> -->
+        <img (click)="user.save('stories', obj)" src="/assets/star-empty.png" alt="" class="__favorite-story">
+        <h4 class="u-center-text">{{ obj.title }}</h4>
+        <ng-container *ngIf="obj.characters.items.length != 0">
+            <br>
+            <h4 class="u-center-text">Characters</h4>
+            <a *ngFor="let char of obj.characters.items | slice:0:8" [href]="'home/characters/' + api.getId(char.resourceURI)">
+                <p>{{ char.name }}</p>
+            </a>
+        </ng-container>
+        <ng-container *ngIf="obj.comics.items.length != 0">
+            <br>
+            <h4 class="u-center-text">Comics</h4>
+            <a *ngFor="let comic of obj.comics.items | slice:0:8" [href]="'home/comics/' + api.getId(comic.resourceURI)">
+                <p>{{ comic.name }}</p>
+            </a>
+        </ng-container>
+    </div>
+</div>

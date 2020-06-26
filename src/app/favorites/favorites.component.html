@@ -1,0 +1,95 @@
+
+
+<h2 class="u-center-text">Characters</h2>
+<div class="wrapper" >
+    <div class="card" *ngFor="let obj of characters">
+        <div class="card__side ">
+
+            <a [routerLink]="'/home/characters/' + obj.id" >
+                <div class="card__picture" 
+                [ngStyle]="{'background-image': 'url(' + obj.thumbnail.path + '/landscape_medium.' + obj.thumbnail.extension +')'}">
+                </div>
+            </a>
+            <h4 class="card__heading">
+                <span class="card__heading-span card__heading-span--3">
+                    {{ obj.name }}
+                </span>
+            </h4>
+
+            <br>
+            <p style="padding: 1.5rem 3rem 0 3rem;">{{ obj.description }}</p>
+            
+            <div class="card__details">
+                <ng-container *ngIf="obj.comics.items.length != 0">
+                    <h4 class="u-center-text">Comics</h4>
+                    <a *ngFor="let comic of obj.comics.items | slice:0:5" [href]="'home/comics/' + api.getId(comic.resourceURI)">
+                        <p class="u-center-text">{{ comic.name }}</p>
+                    </a>
+                </ng-container>
+                <ng-container *ngIf="obj.stories.items.length != 0">
+                    <br>
+                    <h4 class="u-center-text">Stories</h4>
+                    <a *ngFor="let story of obj.stories.items | slice:0:5" [href]="'home/stories/' + api.getId(story.resourceURI)">
+                        <p class="u-center-text">{{ story.name }}</p>
+                    </a>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<h2 class="u-center-text">Comics</h2>
+
+<div class="wrapper" >
+    <div class="card" *ngFor="let obj of comics">
+        <div class="card__side ">
+
+            <a [routerLink]="'/home/comics/' + obj.id" >
+                <div class="card__picture" 
+                [ngStyle]="{'background-image': 'url(' + obj.thumbnail.path + '/landscape_medium.' + obj.thumbnail.extension +')'}">
+                </div>
+            </a>
+            <h4 class="card__heading-comics">
+                <span class="card__heading-span card__heading-span--3">
+                    {{ obj.title }}
+                </span>
+            </h4>
+
+            <br>
+            <p style="padding: 3rem;">{{ obj.description }}</p>
+            
+            <div class="card__details">
+                <ng-container *ngIf="obj.stories.items.length != 0">
+                    <br>
+                    <h4 class="u-center-text">Stories</h4>
+                    <a *ngFor="let story of obj.stories.items | slice:0:5" [href]="'home/stories/' + api.getId(story.resourceURI)">
+                        <p>{{ story.name }}</p>
+                    </a>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<h2 class="u-center-text">Stories</h2>
+<div class="wrapper" >
+    <div class="col-1-of-3 navigation__border" *ngFor="let obj of stories">
+        <h4 class="u-center-text">{{ obj.title }}</h4>
+        <ng-container *ngIf="obj.characters.items.length != 0">
+            <br>
+            <h4 class="u-center-text">Characters</h4>
+            <a *ngFor="let char of obj.characters.items | slice:0:8" [href]="'home/characters/' + api.getId(char.resourceURI)">
+                <p>{{ char.name }}</p>
+            </a>
+        </ng-container>
+        <ng-container *ngIf="obj.comics.items.length != 0">
+            <br>
+            <h4 class="u-center-text">Comics</h4>
+            <a *ngFor="let comic of obj.comics.items | slice:0:8" [href]="'home/comics/' + api.getId(comic.resourceURI)">
+                <p>{{ comic.name }}</p>
+            </a>
+        </ng-container>
+    </div>
+</div>
