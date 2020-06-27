@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class StoryComponent implements OnInit {
   story;
   attText;
-  constructor(private api: ApiProvider, private route: ActivatedRoute) { }
+  constructor(public api: ApiProvider, public route: ActivatedRoute) { }
 
   ngOnInit() {
     this.api.getData('stories/' + this.route.snapshot.paramMap.get('id')).subscribe( (res: any) => {

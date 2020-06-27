@@ -15,10 +15,10 @@ export class ComicsComponent implements OnInit {
   filters: FormGroup;
   scrolled = false;
 
-  constructor(private api: ApiProvider, private fb: FormBuilder, private user: UserService) { }
+  constructor(public api: ApiProvider, public fb: FormBuilder, public user: UserService) { }
 
   @HostListener('window:scroll', [])
-  private loadScroll() {
+  public loadScroll() {
     if (this.api.bottomReached() && !this.scrolled) {
       this.scrolled = true;
       console.log(this.api.bottomReached());

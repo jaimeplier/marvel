@@ -12,7 +12,7 @@ export class StoriesComponent implements OnInit {
   page = 1;
   scrolled = false;
 
-  constructor(private api: ApiProvider, private user: UserService) { }
+  constructor(public api: ApiProvider, public user: UserService) { }
 
   ngOnInit() {
     this.api.getData('stories').subscribe( (res: any) => {
@@ -21,7 +21,7 @@ export class StoriesComponent implements OnInit {
   }
 
   @HostListener('window:scroll', [])
-  private loadScroll() {
+  public loadScroll() {
     if (this.api.bottomReached() && !this.scrolled) {
       this.scrolled = true;
       this.api.getData('stories', null, this.page ).subscribe( (res: any) => {

@@ -12,7 +12,7 @@ export class FavoritesComponent implements OnInit {
   comics;
   stories;
 
-  constructor(private user: UserService, private api: ApiProvider) { }
+  constructor(public user: UserService, public api: ApiProvider) { }
 
   ngOnInit() {
     this.characters = this.user.characters;
